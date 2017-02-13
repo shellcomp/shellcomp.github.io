@@ -4,7 +4,8 @@ Command line (aka tab) completion is popular in the Unix world as it helps typin
 
 ## The problem
 
-Impementing filename completion is easy. Implementing command-specific completion (e.g. git com<tab>)) is not.
+Impementing filename completion is easy.
+Implementing command-specific completion like `git com<tab>` is not.
 
 Completion scripts are different across Bash, Zsh and Fish.
 
