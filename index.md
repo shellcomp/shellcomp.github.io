@@ -17,11 +17,15 @@ Completion is implemented in the command about to be run:
 The shell run the command with a specific `--tabcomplete '<partial_string>'` option.
 The command responds with simple JSON structure that the shell will parse to perform completion or display help messages.
 
-Benefits:
+## Benefits
 
 * Shell-independent
 * Able to suggest alternative commands and provide contextual help
-* Discoverable: the completion mechanism can be queried programmatically to generate documentation, manpages, simple GUIs, run tests.
+* Discoverable: the completion mechanism can be queried programmatically to generate...
+* ...documentation,
+* ...manpages,
+* ...simple GUIs,
+* ...functional tests.
 
 ### The JSON format
 
@@ -38,8 +42,7 @@ help
 
 An example response for "git con<TAB>"
 
-.. code-block:: javascript
-
+```javascript
     {
         "v": 1,
         "completions": [
@@ -50,26 +53,35 @@ An example response for "git con<TAB>"
         ]
         "help": "",
     }
-
+```
 
 **Fields usage:**
 
-v
-  format version. Should be 1.
-completions
-  a list of valid completion values in format ["completion string", "help string"]. The help string can be empty. An empty list means that no more arguments are expected. An item with an empty completion string means that non-completable user input is expected (e.g. touch <new_filename>).
-alt
-  alternative completions. Some structure as "completions", it contains suggestions about other commands that the user might want to use instead.
-  If the 
-help
-  contextual help message. It can contain newlines or be empty.
-errpos
-  if the user-supplied string contains a syntax error, this is the position of the first error, counting from 0 from the left.
-files
-  a list of filenames, in case the current argument is meant to be an existing file. Using a different field other than "completions" allow shells to display the filenames in different colors
+- v
+
+   format version. Should be 1.
+
+- completions
+
+   a list of valid completion values in format ["completion string", "help string"]. The help string can be empty. An empty list means that no more arguments are expected. An item with an empty completion string means that non-completable user input is expected (e.g. touch <new_filename>).
+
+- alt
+
+   alternative completions. Some structure as `completions`, contains suggestions about other commands that the user might want to use instead.
+ 
+- help
+
+   contextual help message. It can contain newlines or be empty.
+   
+- errpos
+
+   if the user-supplied string contains a syntax error, this is the position of the first error, counting from 0 from the left.
+   
+- files
+
+  a list of filenames, in case the current argument is meant to be an existing file. Allow shells to display the filenames in different colors than `completions`
 
 **How to implement it.**
-
 
 In the long term, popular shells like Bash, Zsh, Fish could implement the standard internally.
 
@@ -78,4 +90,4 @@ In the short term, a simple wrapper could run the application on behalf of the s
 Applications could implement completion autonomously or through helper libraries
 like `DocOpt <http://docopt.org/>`_ or `Click <http://click.pocoo.org/5/>`_
 
-FAQ
+F
