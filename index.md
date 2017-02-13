@@ -63,7 +63,7 @@ An example response for "git con<TAB>"
 
 - completions
 
-   a list of valid completion values in format ["completion string", "help string"]. The help string can be empty. An empty list means that no more arguments are expected. An item with an empty completion string means that non-completable user input is expected (e.g. a name for a new file).
+   a list of valid completion values in format ["completion string", "help string"]. The help string can contain multiple lines or be empty. An item with an empty completion string means that non-completable user input is expected (e.g. a name for a new file). An empty list means that no more arguments are expected.
 
 - alt
 
@@ -71,7 +71,7 @@ An example response for "git con<TAB>"
  
 - help
 
-   contextual help message. It can contain newlines or be empty.
+   contextual help message. It can contain multiple lines or be empty.
    
 - errpos
 
