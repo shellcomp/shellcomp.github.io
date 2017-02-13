@@ -63,7 +63,7 @@ An example response for "git con<TAB>"
 
 - completions
 
-   a list of valid completion values in format ["completion string", "help string"]. The help string can be empty. An empty list means that no more arguments are expected. An item with an empty completion string means that non-completable user input is expected (e.g. touch <new_filename>).
+   a list of valid completion values in format ["completion string", "help string"]. The help string can be empty. An empty list means that no more arguments are expected. An item with an empty completion string means that non-completable user input is expected (e.g. a name for a new file).
 
 - alt
 
@@ -81,13 +81,11 @@ An example response for "git con<TAB>"
 
   a list of filenames, in case the current argument is meant to be an existing file. Allow shells to display the filenames in different colors than `completions`
 
-**How to implement it.**
+## How to implement it
 
 In the long term, popular shells like Bash, Zsh, Fish could implement the standard internally.
 
 In the short term, a simple wrapper could run the application on behalf of the shell and perform "traditional" completion. 
 
 Applications could implement completion autonomously or through helper libraries
-like `DocOpt <http://docopt.org/>`_ or `Click <http://click.pocoo.org/5/>`_
-
-F
+like [DocOpt](http://docopt.org) or [Click](http://click.pocoo.org/5/)
