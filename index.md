@@ -7,15 +7,13 @@ Command line (aka tab) completion is popular in the Unix world as it helps typin
 Impementing filename completion is easy.
 Implementing command-specific completion like `git com<tab>` is not.
 
-Completion scripts are different across Bash, Zsh and Fish.
-
-Time consuming to implement, sometimes out of date, hacky.
-  https://anonscm.debian.org/cgit/bash-completion/debian.git/tree/completions
+Completion scripts are different across Bash, Zsh and Fish. Time consuming to implement and maintain, sometimes out of date, hacky in general. [some](https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org) [examples](https://anonscm.debian.org/cgit/bash-completion/debian.git/tree/completions)
 
 ## A modest proposal
 
+Shellcomp is a simple standard to perform completion.
 Completion is implemented in the command about to be run:
-The shell run the command with a specific `--tabcomplete '<partial_string>'` option.
+The shell runs the command with a specific `--tabcomplete '<partial_string>'` option.
 The command responds with simple JSON structure that the shell will parse to perform completion or display help messages.
 
 ## Benefits
@@ -23,6 +21,7 @@ The command responds with simple JSON structure that the shell will parse to per
 * Shell-independent
 * Able to suggest alternative commands and provide contextual help
 * Discoverable: the completion mechanism can be queried programmatically to generate...
+* ...interactive shells,
 * ...documentation,
 * ...manpages,
 * ...simple GUIs,
@@ -84,9 +83,15 @@ An example response for "git con<TAB>"
 
 ## How to implement it
 
-In the long term, popular shells like Bash, Zsh, Fish could implement the standard internally.
+In the long term, popular shells like Bash, Zsh, Fish could support the standard and consume the JSON document.
 
-In the short term, a simple wrapper could run the application on behalf of the shell and perform "traditional" completion. 
+In the short term, a simple wrapper could run the application on behalf of the shell and perform "traditional" completion. This allows a progressive deployment.
 
-Applications could implement completion autonomously or through helper libraries
+Applications can implement completion internally or through helper libraries
 like [DocOpt](http://docopt.org) or [Click](http://click.pocoo.org/5/)
+
+## How to contribute
+
+- Provide your feedback [GitHub issues](https://github.com/shellcomp/shellcomp.github.io/issues)
+- Talk to shell developers and completion maintainers
+- Help implementing support  in shells, the applications or libraries.
